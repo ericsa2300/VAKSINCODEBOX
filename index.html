@@ -301,17 +301,20 @@ License: You must have a valid license purchased only from themeforest(the above
 					else {
 						$("#errcbbVaksin").attr("hidden", "hidden");
 					}
-					
-					if (Nama != '' && Umur != '' && Alamat != '' && NIK != '' && NOHP != '' && JenisVaksin != '') {
-						const scriptURL = 'https://script.google.com/macros/s/AKfycbw7TgDhp9Rr7Cxl3u-IX-N7tFoLhW9PwbzH6Yu4a9xLLfEBBaZVHi_gy7NW3VmaFeGCwQ/exec'
+					const scriptURL = 'https://script.google.com/macros/s/AKfycbw7TgDhp9Rr7Cxl3u-IX-N7tFoLhW9PwbzH6Yu4a9xLLfEBBaZVHi_gy7NW3VmaFeGCwQ/exec'
 						    const form = document.forms['google-sheet']
-
-						    form.addEventListener('onclick', e => {
+if (Nama != '' && Umur != '' && Alamat != '' && NIK != '' && NOHP != '' && JenisVaksin != '') {
+						form.addEventListener('submit', e => {
 						      e.preventDefault()
 						      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
 							.then(response => Login.Alert())
 							.catch(error => console.error('Error!', error.message))
+						
+					}
+						    
 						    })
+					if (Nama != '' && Umur != '' && Alamat != '' && NIK != '' && NOHP != '' && JenisVaksin != '') {
+						
 						
 					} else {
 						swal.fire({
