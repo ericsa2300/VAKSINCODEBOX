@@ -303,25 +303,16 @@ License: You must have a valid license purchased only from themeforest(the above
 					}
 					
 					if (Nama != '' && Umur != '' && Alamat != '' && NIK != '' && NOHP != '' && JenisVaksin != '') {
-						swal.fire({
-							text: "Data telah berhasil di input!!",
-							icon: "success",
-							buttonsStyling: false,
-							confirmButtonText: "Terima Kasih",
-							confirmButtonClass: "btn font-weight-bold btn-light-primary"
-						}).then(function() {
-							const scriptURL = 'https://script.google.com/macros/s/AKfycbw7TgDhp9Rr7Cxl3u-IX-N7tFoLhW9PwbzH6Yu4a9xLLfEBBaZVHi_gy7NW3VmaFeGCwQ/exec'
-							    const form = document.forms['google-sheet']
+						const scriptURL = 'https://script.google.com/macros/s/AKfycbw7TgDhp9Rr7Cxl3u-IX-N7tFoLhW9PwbzH6Yu4a9xLLfEBBaZVHi_gy7NW3VmaFeGCwQ/exec'
+						    const form = document.forms['google-sheet']
 
-							    form.addEventListener('submit', e => {
-							      e.preventDefault()
-							      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-								.then(response => alert("You have successfully submitted."))
-								.catch(error => console.error('Error!', error.message))
-							    })
-							Login.ClearItem()
-							KTUtil.scrollTop();
-						});
+						    form.addEventListener('submit', e => {
+						      e.preventDefault()
+						      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+							.then(response => Login.Alert())
+							.catch(error => console.error('Error!', error.message))
+						    })
+						
 					} else {
 						swal.fire({
 							text: "Maaf data yang anda isi belum selesai",
@@ -358,20 +349,27 @@ License: You must have a valid license purchased only from themeforest(the above
 						
 					}
 				}
+			
+			Login.Alert = function()
+			{
+			swal.fire({
+							text: "Data telah berhasil di input!!",
+							icon: "success",
+							buttonsStyling: false,
+							confirmButtonText: "Terima Kasih",
+							confirmButtonClass: "btn font-weight-bold btn-light-primary"
+						}).then(function() {
+							
+							Login.ClearItem()
+							KTUtil.scrollTop();
+						});
+			}
 		</script>
 		<!-- <script src="assets/js/pages/custom/login/login.js"></script> -->
 		<!--end::Page Scripts-->
 		
 		<script type="text/javascript">
-			  const scriptURL = 'https://script.google.com/macros/s/AKfycbw7TgDhp9Rr7Cxl3u-IX-N7tFoLhW9PwbzH6Yu4a9xLLfEBBaZVHi_gy7NW3VmaFeGCwQ/exec'
-			    const form = document.forms['google-sheet']
-
-			    form.addEventListener('submit', e => {
-			      e.preventDefault()
-			      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-				.then(response => alert("You have successfully submitted."))
-				.catch(error => console.error('Error!', error.message))
-			    })
+			  
 		  </script>
 	</body>
 	<!--end::Body-->
