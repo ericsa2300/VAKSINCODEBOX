@@ -151,7 +151,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<!--begin::Action-->
 								<div class="form-group d-flex flex-wrap justify-content-between align-items-center">
 									<span class="text-dark-50 text-hover-primary my-3 mr-2"></span>
-									<button type="submit" name="submit" value="Submit" class="btn btn-success font-weight-bold px-9 py-4 my-3" onclick="Login.Submit()">Submit</button>
+									<button type="submit" class="btn btn-success font-weight-bold px-9 py-4 my-3">Submit</button>
 								</div>
 								<!--end::Action-->
 							</form>
@@ -301,22 +301,20 @@ License: You must have a valid license purchased only from themeforest(the above
 					else {
 						$("#errcbbVaksin").attr("hidden", "hidden");
 					}
-					const scriptURL = 'https://script.google.com/macros/s/AKfycbw7TgDhp9Rr7Cxl3u-IX-N7tFoLhW9PwbzH6Yu4a9xLLfEBBaZVHi_gy7NW3VmaFeGCwQ/exec'
-						    const form = document.forms['google-sheet']
-if (Nama != '' && Umur != '' && Alamat != '' && NIK != '' && NOHP != '' && JenisVaksin != '') {
-						form.addEventListener('submit', e => {
-						      e.preventDefault()
-						      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-							.then(response => Login.Alert())
-							.catch(error => console.error('Error!', error.message))
-						
-					}
-						    
-						    })
+					
 					if (Nama != '' && Umur != '' && Alamat != '' && NIK != '' && NOHP != '' && JenisVaksin != '') {
-						
-						
-					} else {
+						swal.fire({
+							text: "Data telah berhasil di input!!",
+							icon: "success",
+							buttonsStyling: false,
+							confirmButtonText: "Terima Kasih",
+							confirmButtonClass: "btn font-weight-bold btn-light-primary"
+						}).then(function() {
+							Login.ClearItem()
+							KTUtil.scrollTop();
+						});
+					} 
+					else {
 						swal.fire({
 							text: "Maaf data yang anda isi belum selesai",
 							icon: "error",
@@ -326,54 +324,66 @@ if (Nama != '' && Umur != '' && Alamat != '' && NIK != '' && NOHP != '' && Jenis
 						}).then(function() {
 							KTUtil.scrollTop();
 						});
-					}
-					
-					Login.ClearItem = function()
-					{
-						document.getElementById("txtNama").value = ''
-						document.getElementById("txtUmur").value = ''
-						document.getElementById("txtAlamat").value = ''
-						document.getElementById("txtNIK").value = ''
-						document.getElementById("txtNOHP").value = ''
-						$("#cbbVaksin").val('')
-						$('#cbbVaksin option[value=""]').attr('selected', 'selected');
-						$('#chkDOSIS1').prop("checked", false);
-						$('#chkDOSIS2').prop("checked", false);
-						$('#chkDOSIS3').prop("checked", false);
-						document.getElementById("DateDOSIS1").value = ''
-						document.getElementById("DateDOSIS2").value = ''
-						document.getElementById("DateDOSIS3").value = ''
-						
-						$("#DateDOSIS1").attr("hidden", "hidden");
-						$("#DateDOSIS2").attr("hidden", "hidden");
-						$("#DateDOSIS3").attr("hidden", "hidden");
-						document.getElementById("txtKeterangan").value = ''
-						
 						
 					}
+						
+						
+							
+						
 				}
-			
-			Login.Alert = function()
-			{
-			swal.fire({
+					
+				Login.ClearItem = function()
+				{
+					document.getElementById("txtNama").value = ''
+					document.getElementById("txtUmur").value = ''
+					document.getElementById("txtAlamat").value = ''
+					document.getElementById("txtNIK").value = ''
+					document.getElementById("txtNOHP").value = ''
+					$("#cbbVaksin").val('')
+					$('#cbbVaksin option[value=""]').attr('selected', 'selected');
+					$('#chkDOSIS1').prop("checked", false);
+					$('#chkDOSIS2').prop("checked", false);
+					$('#chkDOSIS3').prop("checked", false);
+					document.getElementById("DateDOSIS1").value = ''
+					document.getElementById("DateDOSIS2").value = ''
+					document.getElementById("DateDOSIS3").value = ''
+					
+					$("#DateDOSIS1").attr("hidden", "hidden");
+					$("#DateDOSIS2").attr("hidden", "hidden");
+					$("#DateDOSIS3").attr("hidden", "hidden");
+					document.getElementById("txtKeterangan").value = ''
+					
+					
+				}
+				
+				Login.Alert = function()
+				{
+					swal.fire({
 							text: "Data telah berhasil di input!!",
 							icon: "success",
 							buttonsStyling: false,
 							confirmButtonText: "Terima Kasih",
 							confirmButtonClass: "btn font-weight-bold btn-light-primary"
 						}).then(function() {
-							
 							Login.ClearItem()
 							KTUtil.scrollTop();
 						});
-			}
-		</script>
+				}
+				
+				
+				</script>
+				<script>
+					const scriptURL = 'https://script.google.com/macros/s/AKfycbw7TgDhp9Rr7Cxl3u-IX-N7tFoLhW9PwbzH6Yu4a9xLLfEBBaZVHi_gy7NW3VmaFeGCwQ/exec'
+					const form = document.forms['google-sheet']
+					form.addEventListener('submit', e => {
+					  e.preventDefault()
+					  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+					.then(response => Login.Alert())
+					.catch(error => console.error('Error!', error.message))
+					})
+				</script>
 		<!-- <script src="assets/js/pages/custom/login/login.js"></script> -->
 		<!--end::Page Scripts-->
-		
-		<script type="text/javascript">
-			  
-		  </script>
 	</body>
 	<!--end::Body-->
 </html>
