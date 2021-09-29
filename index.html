@@ -306,7 +306,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						const scriptURL = 'https://script.google.com/macros/s/AKfycbw7TgDhp9Rr7Cxl3u-IX-N7tFoLhW9PwbzH6Yu4a9xLLfEBBaZVHi_gy7NW3VmaFeGCwQ/exec'
 						    const form = document.forms['google-sheet']
 
-						    form.addEventListener('submit', e => {
+						    form.addEventListener('onclick', e => {
 						      e.preventDefault()
 						      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
 							.then(response => Login.Alert())
